@@ -2,13 +2,13 @@
 
 enum Pins {
   // Sensor pins.
-  TRIG = 13,
-  ECHO = 12,
+  TRIG = 12,
+  ECHO = 13,
   // Motor pins.
-  RIGHT_M1 = 3,
-  RIGHT_M2 = 4,
-  LEFT_M1 = 5,
-  LEFT_M2 = 6,
+  FRONT_M1 = 5,
+  FRONT_M2 = 6,
+  BACK_M1 = 9,
+  BACK_M2 = 10,
   // Servo pin.
-  SERVO_PIN = 5,
+  SERVO_PIN = 3,
 };

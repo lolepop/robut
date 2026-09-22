@@ -18,25 +18,26 @@ void setup() {
   pinMode(ECHO, INPUT);
   Serial.begin(9600);
 
-  pinMode(RIGHT_M1, OUTPUT);
-  pinMode(RIGHT_M2, OUTPUT);
-  pinMode(LEFT_M1, OUTPUT);
-  pinMode(LEFT_M2, OUTPUT);
+  pinMode(FRONT_M1, OUTPUT);
+  pinMode(FRONT_M2, OUTPUT);
+  pinMode(BACK_M1, OUTPUT);
+  pinMode(BACK_M2, OUTPUT);
 
   servo.attach(SERVO_PIN, 660, 2400); // TODO: calibrate this
   servo.write(restAngle);
 
   currentStage = new InitStage(millis());
+  initMotor();
 }
 
 void runStage(float sensorDistCm) {
-  if (currentStage == NULL)
+  if (currentStage == nullptr)
     return;
 
   auto stageType = currentStage->stageRepr();
   if (!currentStage->loop(sensorDistCm))
     return;
-  free(currentStage);
+  delete currentStage;
 
   // goto next stage
   switch (stageType) {
@@ -54,7 +55,7 @@ void runStage(float sensorDistCm) {
     break;
     case RobotStage::TERMINATED:
       Serial.println("should not happen");
-      currentStage = NULL;
+      currentStage = nullptr;
     break;
   }
 

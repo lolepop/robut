@@ -7,7 +7,7 @@ const unsigned long minTimeOverRamp = 10 * 1000; // time until ramp is definitel
 const float sensorStopDist = 20.0f; // cutoff distance to stop, adjust for 5cm termination distance
 
 const int restAngle = 0; // angle at rest
-const int throwAngle = 180; // final throw angle
+const int throwAngle = 90; // final throw angle
 
 enum RobotStage {
   INIT,
