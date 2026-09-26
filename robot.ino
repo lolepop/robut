@@ -8,7 +8,7 @@
 #define SPEED_OF_SOUND 0.0345
 
 Servo servo;
-Stage* currentStage;
+Stage* currentStage = nullptr;
 unsigned long oneWayCompletionTime = 0;
 
 void setup() {
@@ -34,12 +34,11 @@ void runStage(float sensorDistCm) {
   if (currentStage == nullptr)
     return;
 
-  auto stageType = currentStage->stageRepr();
+  RobotStage stageType = currentStage->stageRepr();
   if (!currentStage->loop(sensorDistCm))
     return;
   delete currentStage;
 
-  // goto next stage
   switch (stageType) {
     case RobotStage::INIT:
       currentStage = new RunningStage(oneWayCompletionTime, millis());

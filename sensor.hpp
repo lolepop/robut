@@ -21,6 +21,8 @@ int medianFilter(int* buffer, int bufferLen) {
 }
 
 int appendSensorData(int micros) {
+  if(micros <= 0) return;
+
   buffer[rBuf] = micros;
   rBuf = (rBuf + 1) % BUFFER_SIZE;
   if (bufLen < BUFFER_SIZE)
